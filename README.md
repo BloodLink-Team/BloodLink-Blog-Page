@@ -742,3 +742,20 @@ The article listing cards use a compact, consistent layout. Every preview image 
 - Excerpts remain hidden on preview cards; they are still retained in `js/articles.js` for search and SEO.
 
 To adjust this design later, edit the final **Compact journal cards** section at the bottom of `css/style.css`. Keep `aspect-ratio:16/9` on `.card-image` and avoid adding fixed image heights or desktop side-by-side image layouts, as those would break the consistent image ratio.
+
+
+## Homepage spacing: keep articles visible sooner
+
+The homepage is intentionally compact above the search bar so visitors can reach the articles without scrolling through a large logo or oversized introduction. The relevant styles are grouped at the **end** of `css/style.css` under `Above-the-fold homepage refinement`. Keep this block at the end because it overrides older design rules earlier in the stylesheet.
+
+You can safely adjust these values:
+
+- `.hero-logo-image` controls the homepage logo size (currently 48px on desktop and 42px on phones).
+- `.hero h1` controls the BloodLink title size.
+- `.tagline` controls the small Donate Blood, Save Lives line.
+- `.welcome-row` controls the spacing around the journal headline and intro.
+- `.section-intro` controls the intro text size and line spacing.
+- `.search-box` controls the search bar height.
+- `.search-panel` controls the gap between search and the article heading.
+
+For a more compact homepage, reduce the padding or margins slightly; avoid setting the logo or heading to zero, as the brand should remain visible. Check the page at phone widths (360–430px) and desktop widths after every change. The goal is for the featured/article heading and at least the beginning of the first article card to appear much sooner on a typical phone screen.
