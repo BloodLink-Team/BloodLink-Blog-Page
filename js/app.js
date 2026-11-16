@@ -91,7 +91,6 @@
       <div class="card-body">
         <div class="card-meta"><span class="category-label">${escapeHTML(textOf(blog.category))}</span><span>${escapeHTML(dateText(blog.date))}</span><span>· ${readMinutes(blog.readMinutes)} ${escapeHTML(t("minRead"))}</span></div>
         <h3 class="card-title"><a href="blog.html?slug=${encodeURIComponent(blog.slug)}">${escapeHTML(textOf(blog.title))}</a></h3>
-        <p class="card-excerpt">${escapeHTML(textOf(blog.excerpt))}</p>
         <a class="read-link" href="blog.html?slug=${encodeURIComponent(blog.slug)}">${escapeHTML(t("read"))} <span>→</span></a>
       </div>
     </article>`;

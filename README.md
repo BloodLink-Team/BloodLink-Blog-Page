@@ -724,3 +724,10 @@ The CSS uses breakpoints for desktop, tablet/mobile, and narrow phones. On mobil
 ### After replacing the homepage files
 
 If you are updating an existing GitHub Pages repository, upload the complete project contents and preserve the folder structure. At minimum, this visual refresh changes `index.html`, `css/style.css`, `js/app.js`, and this README. Keep `js/articles.js`, `js/config.js`, `js/analytics.js`, `blog.html`, `404.html`, `privacy.html`, `assets/`, `robots.txt`, and `sitemap.xml` from the same project version. Clear the browser cache or use a private tab if the old CSS remains visible.
+
+
+## Article card design (all articles use the same layout)
+
+Every article preview now uses the same full editorial card style as the featured article: a large 16:9 image, category/date/read-time metadata, prominent title, and a Read article link. The short excerpt/summary is intentionally hidden on listing cards to keep the homepage clean. The excerpt remains in `js/articles.js` for search, SEO descriptions, and article-page metadata; do not delete it.
+
+On phones, cards stack image above the text. On desktop, cards use a wide image-and-content layout. The same card design is used for related articles. To change the card appearance globally, edit the final `Journal article cards` section at the bottom of `css/style.css`; avoid adding per-article inline styles.
