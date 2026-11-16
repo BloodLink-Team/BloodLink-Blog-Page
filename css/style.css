@@ -189,3 +189,23 @@ body{background:radial-gradient(ellipse at 82% 17%,rgba(255,226,219,.48),transpa
   .search-box{height:44px}
   .search-box input{font-size:12px}
 }
+
+
+/* 2026-11-16: prevent unwanted initial scroll and left-align desktop layout */
+html { scroll-behavior: auto; }
+@media (min-width: 761px) {
+  .page-shell {
+    width: min(1120px, calc(100% - 96px));
+    margin-left: clamp(28px, 5vw, 80px);
+    margin-right: auto;
+  }
+  .hero, .hero-brand, .welcome-row, .welcome-copy,
+  .search-panel, .search-box, .blogs-section, .section-heading {
+    text-align: left;
+    justify-content: flex-start;
+  }
+  .hero-brand { margin-left: 0; }
+  .welcome-row { align-items: flex-start; }
+  .search-panel { max-width: 720px; }
+  .blog-grid { justify-items: stretch; }
+}

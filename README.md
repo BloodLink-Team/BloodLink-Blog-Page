@@ -759,3 +759,12 @@ You can safely adjust these values:
 - `.search-panel` controls the gap between search and the article heading.
 
 For a more compact homepage, reduce the padding or margins slightly; avoid setting the logo or heading to zero, as the brand should remain visible. Check the page at phone widths (360–430px) and desktop widths after every change. The goal is for the featured/article heading and at least the beginning of the first article card to appear much sooner on a typical phone screen.
+
+
+## Phone opening position and desktop alignment
+
+The homepage disables browser scroll-position restoration on a fresh open so visitors start at the top instead of unexpectedly landing halfway down the page. Explicit in-page links (for example `#latest`) are still allowed to navigate to their requested section. The CSS also uses normal, non-smooth initial scrolling.
+
+On desktop widths (above 760px), the main page container, logo/title block, introduction, search field, section heading, and article grid are left-aligned with a consistent left margin. On phones, the existing compact responsive layout remains in effect.
+
+If a phone still opens partway down the page, check that the browser is not restoring an existing tab session; close the old tab and open the site in a new tab or private window to test a fresh visit.

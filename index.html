@@ -3,6 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    // Prevent mobile browsers from restoring an old scroll position on a fresh page open.
+    try { if ("scrollRestoration" in history) history.scrollRestoration = "manual"; } catch (_) {}
+    window.addEventListener("pageshow", function (event) {
+      if (!location.hash && (event.persisted || window.scrollY > 0)) {
+        window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      }
+    });
+  </script>
   <meta name="theme-color" content="#c90012">
   <meta name="description" content="Explore practical blood donation guides, donor stories, and reliable blood health information from BloodLink Blog.">
   <link rel="canonical" href="https://suchock.github.io/">
