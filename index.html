@@ -52,28 +52,30 @@
 
   <main class="page-shell">
     <section class="hero">
-      <div class="hero-logo"><img class="brand-logo hero-logo-image" src="assets/bloodlink-logo.png" alt="BloodLink logo"><h1>BloodLink</h1></div>
-      <p class="tagline" data-i18n="tagline">Donate Blood, Save Lives</p>
+      <div class="hero-brand">
+        <img class="brand-logo hero-logo-image" src="assets/bloodlink-logo.png" alt="BloodLink logo" width="76" height="76">
+        <div class="hero-brand-copy"><h1>BloodLink</h1><p class="tagline" data-i18n="tagline">Donate Blood, Save Lives</p></div>
+      </div>
     </section>
 
     <section class="welcome-row">
-      <div>
+      <div class="welcome-copy">
         <p class="eyebrow" data-i18n="eyebrow">THE BLOODLINK JOURNAL</p>
-        <h2 data-i18n="heading">Stories and knowledge that save lives.</h2>
-        <p class="section-intro" data-i18n="intro">Explore practical guides, donor stories, and reliable information about blood donation.</p>
+        <h2 data-i18n="heading">Awareness Begins Here.</h2>
+        <p class="section-intro" data-i18n="intro">Explore practical guides, topics, and reliable information about blood donation.</p>
       </div>
     </section>
 
     <section class="search-panel" aria-label="Search blogs">
       <label class="search-box">
-        <span class="search-icon">⌕</span>
-        <input id="searchInput" type="search" autocomplete="off" placeholder="Search blogs, topics, or keywords…" data-i18n-placeholder="searchPlaceholder">
+        <span class="search-icon" aria-hidden="true"></span>
+        <input id="searchInput" type="search" autocomplete="off" placeholder="Search blogs, topics, or keywords." data-i18n-placeholder="searchPlaceholder">
         <button id="clearSearch" class="clear-search" aria-label="Clear search" hidden>×</button>
       </label>
     </section>
 
     <section id="latest" class="blogs-section">
-      <div class="section-heading"><div><p class="eyebrow" data-i18n="freshReads">FRESH READS</p><h2 data-i18n="latest">Latest articles</h2></div><span class="sort-label" data-i18n="updated">Helpful reads for every donor</span></div>
+      <div class="section-heading"><div><h2 data-i18n="latest">Featured articles</h2></div><span class="sort-label" data-i18n="updated">Helpful reads for every donor</span></div>
       <div id="blogGrid" class="blog-grid" aria-live="polite"><div class="loading-state" role="status"><span class="loading-spinner"></span>Loading articles…</div></div>
       <div id="emptyState" class="empty-state" hidden><span class="empty-icon">⌕</span><h3 data-i18n="noResults">No articles found</h3><p data-i18n="noResultsText">Try another keyword or choose a different topic.</p><button class="button-primary" id="resetSearch" data-i18n="reset">Reset search</button></div>
     </section>

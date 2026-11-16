@@ -695,3 +695,32 @@ Article cards use a medium preview: title is limited to two lines, summary is cl
 6. With the GA placeholder, confirm no request to `googletagmanager.com` occurs. If Analytics is enabled, verify the ID and test in GA4 Realtime.
 7. Check that `sitemap.xml` contains only real public pages and that `robots.txt` points to the correct sitemap.
 8. Wait for GitHub Pages deployment, then hard-refresh and test the public website.
+
+---
+
+## Homepage visual design (November 2026 refresh)
+
+The homepage now follows the BloodLink Journal reference design: a solid red compact header, left-aligned logo and wordmark, warm off-white/pale-pink background, large editorial headline, slim red-outline search field, and a prominent featured article card.
+
+### Where to edit the homepage appearance
+
+- `index.html` controls the homepage structure: header, brand block, headline, search field, and article-list heading.
+- `css/style.css` contains the visual theme and responsive rules. The section titled `BloodLink Journal visual refresh` is the final homepage override layer. Edit these rules to adjust spacing, colors, type sizes, and card layout.
+- `js/app.js` contains the English and Bangla homepage wording. Search for the `copy` object and edit the `heading`, `intro`, `latest`, and `tagline` values in both language sections.
+- `js/articles.js` controls article content, images, category labels, dates, and summaries. The first article in the list is displayed as the featured lead card; newer articles are ordered by date in the app.
+
+### Featured article card
+
+The newest article is displayed as the large featured card. Its image is shown prominently, followed by category, publication date, reading time, title, a short excerpt, and the Read article link. Other articles use smaller cards. To change the featured story, update article dates in `js/articles.js`; do not manually duplicate the article in `index.html`.
+
+### Search field
+
+The search input remains connected to `js/app.js`. It searches article title, excerpt, category, slug, metadata description, and body text. The red-outline style is in the `BloodLink Journal visual refresh` section of `css/style.css`. Do not remove the `searchInput` or `clearSearch` IDs from `index.html`, because the search JavaScript uses them.
+
+### Responsive layout
+
+The CSS uses breakpoints for desktop, tablet/mobile, and narrow phones. On mobile, the featured article stays image-first and full-width, while secondary articles become compact horizontal previews. On wider screens, the featured card uses a side-by-side image and text layout. Test at least one narrow phone width and one desktop width after changing layout rules.
+
+### After replacing the homepage files
+
+If you are updating an existing GitHub Pages repository, upload the complete project contents and preserve the folder structure. At minimum, this visual refresh changes `index.html`, `css/style.css`, `js/app.js`, and this README. Keep `js/articles.js`, `js/config.js`, `js/analytics.js`, `blog.html`, `404.html`, `privacy.html`, `assets/`, `robots.txt`, and `sitemap.xml` from the same project version. Clear the browser cache or use a private tab if the old CSS remains visible.
