@@ -731,3 +731,14 @@ If you are updating an existing GitHub Pages repository, upload the complete pro
 Every article preview now uses the same full editorial card style as the featured article: a large 16:9 image, category/date/read-time metadata, prominent title, and a Read article link. The short excerpt/summary is intentionally hidden on listing cards to keep the homepage clean. The excerpt remains in `js/articles.js` for search, SEO descriptions, and article-page metadata; do not delete it.
 
 On phones, cards stack image above the text. On desktop, cards use a wide image-and-content layout. The same card design is used for related articles. To change the card appearance globally, edit the final `Journal article cards` section at the bottom of `css/style.css`; avoid adding per-article inline styles.
+
+### Compact article preview sizing (16:9 images)
+
+The article listing cards use a compact, consistent layout. Every preview image is locked to a **16:9 aspect ratio** with `object-fit: cover`, so images keep the same shape on phones, tablets, desktop, featured articles, and related articles. The image height is calculated from its available width rather than using a large fixed height.
+
+- On desktop, article cards appear in a two-column grid to reduce excessive page length.
+- On phones, cards use one column, with the image above the text.
+- Card padding, title size, metadata spacing, and line height are reduced for a tighter preview.
+- Excerpts remain hidden on preview cards; they are still retained in `js/articles.js` for search and SEO.
+
+To adjust this design later, edit the final **Compact journal cards** section at the bottom of `css/style.css`. Keep `aspect-ratio:16/9` on `.card-image` and avoid adding fixed image heights or desktop side-by-side image layouts, as those would break the consistent image ratio.
