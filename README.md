@@ -774,3 +774,10 @@ The homepage disables browser scroll-position restoration on a fresh open so vis
 On desktop widths (above 760px), the main page container, logo/title block, introduction, search field, section heading, and article grid are left-aligned with a consistent left margin. On phones, the existing compact responsive layout remains in effect.
 
 If a phone still opens partway down the page, check that the browser is not restoring an existing tab session; close the old tab and open the site in a new tab or private window to test a fresh visit.
+
+
+## Desktop article width and three-column layout
+
+On screens wider than 760px, the article list and related articles display three cards per row. The content container now expands up to 1560px and is centred, so the cards use more of the available desktop width instead of leaving a large blank area on the right. Each card keeps a 16:9 image. On smaller screens, the existing responsive one-column/two-column rules remain in effect.
+
+To adjust this later, edit the desktop `.page-shell` rule and the `.blog-grid, .related-grid` rule near the end of `css/style.css`. Keep `repeat(3, minmax(0, 1fr))` for three desktop columns and `aspect-ratio: 16 / 9` for article images.
