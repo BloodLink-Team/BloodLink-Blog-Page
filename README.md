@@ -284,6 +284,12 @@ Avoid: `alt: "blood donation blood donor best blood donation Bangladesh BloodLin
 
 Decorative images should use empty alt text (`alt=""`) when appropriate. Logos should have concise alt text such as `BloodLink logo`. When adding a new image directly to HTML, include an `alt` attribute.
 
+## Desktop article layout (three cards per row)
+
+On screens wider than 760px, the homepage and related-article sections display **three article cards per row**. Each card places its image above the title and metadata, matching the BloodLink Journal card style. Article images use a consistent 16:9 ratio. On phones, cards remain in a single column for comfortable reading.
+
+To change the desktop column count later, open `css/style.css` and search for `Desktop article layout: exactly three cards per row`. Change `repeat(3, minmax(0, 1fr))` to `repeat(2, minmax(0, 1fr))` for two columns, or another number if desired. Keep the mobile rules below it unchanged unless you also want to change the phone layout.
+
 ## 6. Change the logo, colors, and page text
 
 ### Change the logo
