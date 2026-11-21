@@ -1,6 +1,6 @@
 (() => {
   const config = window.BLOODLINK_BLOG_CONFIG || { blogs: [], defaultLanguage: "en" };
-  const blogs = window.BLOODLINK_BLOGS || config.blogs || [];
+  let blogs = window.BLOODLINK_BLOGS || config.blogs || [];
   const copy = {
     en: {
       menuSubtitle:"Donate Blood, Save Lives",home:"Home",allBlogs:"All blogs",about:"About BloodLink Blog",
@@ -128,9 +128,7 @@
     const visible = blogs.filter(blog => {
       const category = textOf(blog.category);
       const topicOK = selectedTopic === "all" || category === selectedTopic;
-      const bodyText = Object.values(blog.body || {}).flat().map(block =>
-        [block.heading || "", ...(block.paragraphs || []), ...(block.bullets || []), block.callout || ""].join(" ")
-      ).join(" ");
+      const bodyText = Object.values(blog.body || {}).map(value => typeof value === 'string' ? value : (value || []).map(block => [block.heading || '', ...(block.paragraphs || []), ...(block.bullets || []), block.callout || ''].join(' ')).join(' ')).join(' ');
       const searchable = [textOf(blog.title), textOf(blog.excerpt), category, blog.slug, textOf(blog.metaDescription), bodyText].join(" ").toLocaleLowerCase();
       return topicOK && (!query || searchable.includes(query));
     }).sort((a,b) => b.date.localeCompare(a.date));
@@ -142,14 +140,33 @@
     if (clear) clear.hidden = !input?.value;
   }
 
-  function renderBody(blocks) {
-    return (blocks || []).map(block => {
+  // Small safe Markdown renderer: article text is escaped before inline formatting is added.
+  function renderBody(source) {
+    if (Array.isArray(source)) return source.map(block => {
       if (block.callout) return `<div class="article-callout">${escapeHTML(block.callout)}</div>`;
       let html = block.heading ? `<h2>${escapeHTML(block.heading)}</h2>` : "";
       if (block.paragraphs) html += block.paragraphs.map(p => `<p>${escapeHTML(p)}</p>`).join("");
       if (block.bullets) html += `<ul>${block.bullets.map(item => `<li>${escapeHTML(item)}</li>`).join("")}</ul>`;
       return html;
     }).join("");
+    const inline = value => escapeHTML(value)
+      .replace(/\[([^\]]+)\]\((https:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g, '<em>$1</em>')
+      .replace(/`([^`]+)`/g, '<code>$1</code>');
+    const lines = String(source || '').replace(/\r/g,'').split('\n');
+    let html='', paragraph=[], list=[], quote=[];
+    const flushP=()=>{ if(paragraph.length){html+=`<p>${inline(paragraph.join(' '))}</p>`;paragraph=[];} };
+    const flushL=()=>{ if(list.length){html+=`<ul>${list.map(x=>`<li>${inline(x)}</li>`).join('')}</ul>`;list=[];} };
+    const flushQ=()=>{ if(quote.length){html+=`<div class="article-callout">${inline(quote.join(' '))}</div>`;quote=[];} };
+    for(const raw of lines){ const line=raw.trim();
+      if(!line){flushP();flushL();flushQ();continue;}
+      if(line.startsWith('> ')){flushP();flushL();quote.push(line.slice(2));continue;}
+      if(line.startsWith('- ') || line.startsWith('* ')){flushP();flushQ();list.push(line.slice(2));continue;}
+      if(/^#{2,3}\s/.test(line)){flushP();flushL();flushQ();const level=line.startsWith('###')?3:2;html+=`<h${level}>${inline(line.replace(/^#{2,3}\s+/,''))}</h${level}>`;continue;}
+      flushL();flushQ();paragraph.push(line);
+    }
+    flushP();flushL();flushQ();return html;
   }
 
   function renderArticle() {
@@ -165,7 +182,7 @@
     const title = textOf(blog.title);
     const description = textOf(blog.metaDescription) || textOf(blog.excerpt) || `Read ${title} on BloodLink Blog.`;
     const articleURL = absoluteURL(`blog.html?slug=${encodeURIComponent(blog.slug)}`);
-    setSEO(`${title} | BloodLink Blog`, description, absoluteURL(blog.ogImage || blog.image || config.ogImage), articleURL);
+    setSEO(textOf(blog.metaTitle) || `${title} | BloodLink Blog`, description, absoluteURL(blog.ogImage || blog.image || config.ogImage), articleURL);
     const body = blog.body?.[language] || blog.body?.en || [];
     target.innerHTML = `
       <img class="article-hero-image" src="${escapeHTML(safeImageURL(blog.image))}" alt="${escapeHTML(textOf(blog.imageAlt) || title)}" decoding="async" onerror="this.style.display='none'">
@@ -208,7 +225,8 @@
     });
   }
 
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("bloodlink:articles-ready", () => {
+    blogs = window.BLOODLINK_BLOGS || [];
     document.getElementById("year") && (document.getElementById("year").textContent = new Date().getFullYear());
     document.querySelectorAll("[data-lang]").forEach(btn => btn.addEventListener("click", () => setLanguage(btn.dataset.lang)));
     document.getElementById("searchInput")?.addEventListener("input", renderBlogList);

@@ -781,3 +781,127 @@ If a phone still opens partway down the page, check that the browser is not rest
 On screens wider than 760px, the article list and related articles display three cards per row. The content container now expands up to 1560px and is centred, so the cards use more of the available desktop width instead of leaving a large blank area on the right. Each card keeps a 16:9 image. On smaller screens, the existing responsive one-column/two-column rules remain in effect.
 
 To adjust this later, edit the desktop `.page-shell` rule and the `.blog-grid, .related-grid` rule near the end of `css/style.css`. Keep `repeat(3, minmax(0, 1fr))` for three desktop columns and `aspect-ratio: 16 / 9` for article images.
+
+
+---
+
+## 17. Two offline mini-games on the 404 page
+
+The custom `404.html` now contains both **Blood Group Match** and **BloodLink Rescue Rush**. Both games are embedded in the 404 page, so they do not need separate pages or external game files. Rescue Rush has **no timer display or countdown**; it ends only when all three lives are lost. Scores and sound preferences are stored locally in the visitor's browser and are not uploaded.
+
+The games can work when the visitor is offline **after the website has been opened online at least once and the service worker has successfully installed**. A first-time visitor with no network cannot download a website they have never cached.
+
+## 18. Offline fallback and automatic website updates
+
+`sw.js` caches the website shell and the self-contained 404 page. When the network is unavailable, a navigation can fall back to the cached 404 page, where the two games remain playable. When the network is available, page, CSS, JavaScript, and image requests use a network-first strategy so visitors receive the current published design rather than an old cached copy. A new service-worker version removes the previous BloodLink cache during activation.
+
+Important:
+- Service workers require HTTPS; GitHub Pages provides HTTPS on its published site.
+- After uploading this release, open the site online once on each phone/browser to install the updated service worker.
+- If a visitor never opens the site online, no offline copy can exist on that device.
+- Browser storage can be cleared by the user or operating system, so offline availability cannot be guaranteed forever.
+- The 404 page is a branded offline fallback, not a replacement for the real browser-level “no internet” screen in every browser.
+
+## 19. Publish articles with Pages CMS
+
+The site now uses Pages CMS with a single JSON article collection at `content/articles.json`. Open https://app.pagescms.org/, sign in with GitHub, authorize only the BloodLink repository, and edit the **Blog articles** collection. The `.pages.yml` configuration is in the repository root.
+
+New entries default to **Draft**. The website only renders entries with `status: "published"`. Existing posts were migrated as Published, with their slugs and bilingual content preserved. See the detailed Pages CMS integration guide at the end of this README for field-by-field instructions, image handling, SEO, URL preservation, and troubleshooting.
+
+English and Bangla content are arranged in separate labelled language sections. Pages CMS configuration supports grouped object fields; it does not provide a guaranteed literal tabbed interface for arbitrary field groups, so these are distinct editor panels rather than custom tab buttons.
+
+## 20. Security and release review notes
+
+This is a static-site code review, not a penetration test or a guarantee that the hosting account, GitHub account, DNS, or third-party services are secure.
+
+- The current project does not contain a login system, payment processing, or server-side database. Do not add passwords, private donor records, patient details, or API secrets to public JavaScript files.
+- Article text is escaped before being inserted into generated HTML. Keep this escaping in place when changing rendering code.
+- Only publish images from trusted sources. Do not allow article authors to enter arbitrary HTML or JavaScript into article fields.
+- Use HTTPS for the live site and enable two-factor authentication on the GitHub account.
+- Keep report email addresses public only if you intend visitors to contact them.
+- Review third-party image hosts and Google Analytics settings for their privacy implications.
+- Re-run link, HTML, JavaScript, responsive, and offline checks after changing site structure.
+
+
+# Pages CMS integration (bilingual, draft-first)
+
+## What changed
+
+- Added `.pages.yml` at the repository root for Pages CMS.
+- Migrated the three existing articles into `content/articles.json` without changing their slugs, bilingual text, dates, featured images, alt text, categories, or existing `blog.html?slug=...` URLs. Existing articles remain **published** so the live site does not lose content.
+- The website now loads that JSON file and displays only entries whose `status` is `published`. Drafts remain in the repository/CMS but are excluded from the homepage, search, related articles, and article lookup.
+- New article records have `status: draft` as the CMS field default. Change status to Published only after both language versions and the image/SEO fields are ready.
+- English and Bangla fields are grouped under two separate language panels (`ENGLISH VERSION` and `বাংলা সংস্করণ`). Pages CMS currently exposes these as grouped object sections, not guaranteed literal tab buttons; the two language areas are separate and clearly labelled.
+- Uploaded images are stored in `assets/uploads/blog/`. The website uses the existing article card/hero image CSS and preserves the existing page design.
+- Existing article URLs remain unchanged as long as you do not change their `slug`.
+
+## Connect Pages CMS
+
+1. Push this entire project folder to the same GitHub repository that publishes the website. Keep `.pages.yml` in the repository root (next to `index.html`).
+2. Open https://app.pagescms.org/ and sign in with GitHub.
+3. Install/authorize the Pages CMS GitHub App for the account that owns the BloodLink repository. Grant access only to the BloodLink repository if possible.
+4. Select the repository and the branch that GitHub Pages deploys from.
+5. Open **Blog articles**. The three migrated posts should appear.
+6. Create a test article with a unique slug and keep Publishing status as **Draft**. Save it, then check the public website: the draft should not appear.
+7. Complete both language sections, upload a cover image, set alt text, date and SEO fields, then change status to **Published** and save. GitHub Pages will deploy the repository changes.
+
+Official setup guide: https://pagescms.org/docs/quick-start/
+
+## Article editor fields
+
+### Shared fields
+
+- **URL slug:** lowercase English letters, numbers and hyphens. This is the URL identity. Do not change a published article's slug unless you also add a redirect.
+- **Publishing status:** Draft or Published. Draft is the default for new records. Existing articles were migrated as Published.
+- **Publication date** and **Reading time:** used in the article metadata.
+- **Author** and **Feature on homepage:** editorial metadata.
+- **Featured image:** used in the article hero and cards. Existing external image URLs were retained; new uploads go to `assets/uploads/blog/`.
+- **Social sharing image:** optional Open Graph/Twitter image; if blank, the featured image is used.
+
+### English and Bangla sections
+
+Each language has its own category, title, short description, image alt text, full article body, SEO title and SEO description. The visitor's language switch selects the matching language. Write both versions yourself: Pages CMS does not automatically translate between them.
+
+### Article body formatting
+
+Use the rich-text editor for headings, paragraphs, bold/italic text, bullet lists, links and quotes. The site renderer supports Markdown headings (`##` / `###`), paragraphs, `-` bullet lists, `> ` callout quotes, bold, italic, inline code, and HTTPS links. Do not paste raw HTML or scripts.
+
+## Images
+
+- Recommended cover: landscape 16:9, preferably 1200×675 pixels or larger.
+- Use JPG, PNG, WebP, AVIF or GIF. WebP is usually a good balance of quality and file size.
+- Write meaningful English and Bangla alt text in the matching language panel.
+- Keep images relevant and ensure you have permission to use them.
+- CMS uploads are committed into the repository; they are public website assets, not private storage. Do not upload donor identity documents, patient records or other private information.
+
+## SEO and URL behaviour
+
+- The existing article URL pattern remains `blog.html?slug=your-article-slug`.
+- The page dynamically updates title, description, canonical URL, Open Graph and Twitter metadata using the selected language's SEO values, falling back to title/excerpt and the article image.
+- This is a static GitHub Pages website. Dynamic meta tags are added in the browser after JavaScript loads; social crawlers that do not execute JavaScript may not see per-article metadata. For stronger crawler-specific SEO, a future static pre-render/build step would be needed.
+- Remember to update `sitemap.xml` when publishing a new article if you want it explicitly listed there; this integration does not automatically rewrite the sitemap.
+
+## Important publishing workflow
+
+1. Create a draft.
+2. Add the English title, excerpt, image alt text and full article.
+3. Add the Bangla equivalents and full translation.
+4. Upload/select the featured image and check both alt texts.
+5. Add optional language-specific SEO titles/descriptions.
+6. Preview the article locally or on a staging branch if available.
+7. Change status to Published and save.
+8. Wait for GitHub Pages deployment, then check the homepage, both languages, article URL and social preview metadata.
+
+**Important:** Pages CMS saves changes as GitHub commits. Draft status prevents public rendering by the BloodLink website, but it is not a private content vault: draft text and images still exist in the public GitHub repository if that repository is public. Keep sensitive content out of drafts.
+
+## Troubleshooting
+
+- **CMS does not show the collection:** confirm `.pages.yml` is in the repository root and the CMS app is authorized for the correct repository and branch.
+- **Website shows no articles:** check that `content/articles.json` is valid JSON and that published entries contain `status: "published"`, `slug`, `english` and `bangla`.
+- **Image is missing:** check that the image file exists in the repository and the saved path is relative, such as `assets/uploads/blog/example.webp`.
+- **Article URL changed:** restore the old slug or add a redirect; the existing query-string URL is based on the slug.
+- **Old site appears:** wait for GitHub Pages deployment and refresh after the service worker updates.
+
+## Backups and rollback
+
+The original `js/articles.js` has been preserved as `js/articles.legacy-backup.js` for reference. The live site no longer loads it. GitHub commit history is the primary rollback path: revert the relevant CMS commit if an edit breaks the content.

@@ -32,7 +32,7 @@
     .game-card p{color:#667085;line-height:1.5;margin:0 0 14px;font-size:.94rem}
     .game-status{font-weight:750;color:#344054;font-size:.9rem;margin:10px 0;min-height:22px}
     .game-button{border:0;border-radius:999px;background:#c90012;color:white;font:inherit;font-weight:750;padding:10px 16px;cursor:pointer;min-height:42px}
-    .game-button:focus-visible,.rescue-control:focus-visible,{outline:3px solid #f5a0a8;outline-offset:3px}
+    
     .game-button.secondary{background:#fff0f1;color:#a80b1b;border:1px solid #f0c7cb}
     .rescue-arena{position:relative;margin-top:12px;border:1px solid #dce3ec;border-radius:18px;overflow:hidden;background:#f3f6fb;touch-action:pan-y;box-shadow:inset 0 1px 0 #fff}
     #rescue-canvas{display:block;width:100%;height:250px;touch-action:none}
@@ -46,11 +46,44 @@
     .game-footnote{max-width:720px;margin-left:auto;margin-right:auto;font-size:.8rem;color:#7a8494;margin-top:16px;line-height:1.5}
     @media(max-width:650px){.topbar{padding:8px 12px}.brand-mini{font-size:15px}.game-grid{grid-template-columns:1fr}.error-wrap{padding:18px 14px 38px}.error-hero{padding:20px 8px 24px}#rescue-canvas{height:220px}.game-card{padding:16px}.game-card h3{margin:-16px -16px 12px;padding:13px 16px}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+  
+    .game-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;max-width:1120px;margin:0 auto;align-items:start}
+    .game-card{background:#fff;border:1px solid #e0e5eb;border-radius:22px;padding:0 16px 16px;box-shadow:0 8px 28px rgba(16,24,40,.045);min-width:0;overflow:hidden}
+    .game-card h3{display:flex;align-items:center;min-height:48px;background:#c90012;color:#fff!important;margin:0 -16px 12px;padding:13px 16px;font-size:1.02rem;line-height:1.3}
+    .game-card p{color:#667085;line-height:1.5;margin:0 0 12px;font-size:.9rem}
+    .game-status{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;background:#f3f6fb;border-radius:12px;padding:8px 10px;font-weight:800;color:#344054;font-size:.82rem;min-height:42px}
+    .game-status strong{color:#c90012}
+    .game-mute{border:1px solid #e3e8ef;background:#fff;border-radius:50%;width:32px;height:32px;cursor:pointer}
+    .game-button{border:0;border-radius:12px;background:#c90012;color:white;font:inherit;font-weight:800;padding:11px 16px;cursor:pointer;min-height:44px}
+    .game-button.full{width:100%;margin-top:10px}
+    .game-button:focus-visible,.rescue-control:focus-visible,.game-mute:focus-visible{outline:3px solid #f5a0a8;outline-offset:3px}
+    .match-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:12px}
+    .match-grid button{aspect-ratio:1;min-width:0;border-radius:12px;font:inherit;font-weight:900;font-size:clamp(.85rem,2vw,1.05rem);cursor:pointer;border:2px solid #c90012;touch-action:manipulation}
+    .match-win{margin-top:12px;padding:12px;border-radius:12px;background:#e7f7f0;color:#056a4e;text-align:center;font-weight:800}
+    .match-win:not([hidden]){display:block}
+    .match-card .game-tip,.game-tip{font-size:.78rem;color:#7a8494;margin:12px 0 0;text-align:center}
+    .rescue-arena{position:relative;margin-top:12px;border:1px solid #dce3ec;border-radius:16px;overflow:hidden;background:#f3f6fb;touch-action:none}
+    #rescue-canvas{display:block;width:100%;height:250px;touch-action:none}
+    .rescue-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:#ffffffd9;text-align:center;padding:12px;pointer-events:none}
+    .rescue-overlay strong{color:#111a2d}.rescue-overlay span{font-size:.82rem;color:#667085}
+    .rescue-controls{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}
+    .rescue-control{border:1px solid #f0c7cb;border-radius:12px;background:#fff0f1;color:#a80b1b;font:inherit;font-weight:850;min-height:44px;cursor:pointer;touch-action:none;user-select:none}
+    .rescue-legend{display:flex;gap:9px;flex-wrap:wrap;font-size:.76rem;color:#667085;margin-top:10px;padding:9px;background:#f3f6fb;border-radius:10px}
+    .rescue-legend span{display:inline-flex;align-items:center;gap:5px}
+    .legend-dot{display:inline-block;width:9px;height:9px;border-radius:50%}
+    .legend-drop{background:#c90012}.legend-germ{background:#078e69}
+    .rescue-lives{color:#c90012}
+    .game-footnote{max-width:900px;margin:16px auto 0;font-size:.78rem;color:#7a8494;line-height:1.5;text-align:center}
+    .noselect{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+    @media(max-width:760px){.game-grid{grid-template-columns:minmax(0,1fr);max-width:560px}}
+    @media(max-width:420px){.error-wrap{padding:14px 10px 30px}.game-card{padding:0 12px 13px;border-radius:17px}.game-card h3{margin:0 -12px 10px;padding:11px 12px}.match-grid{gap:6px}.match-grid button{border-radius:9px}.match-status{font-size:.76rem}#rescue-canvas{height:220px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
   </style>
 </head>
 <body>
   <header class="topbar">
-    <a class="icon-button menu-button" id="back-button" href="/index.html" data-site-path="/index.html" aria-label="Go back to the previous page" title="Go back" style="text-decoration:none">←</a>
+    <a class="icon-button menu-button" id="back-button" href="./index.html" data-site-path="index.html" aria-label="Go back to the previous page" title="Go back" style="text-decoration:none">←</a>
     <div style="font-weight:850;color:#fff">BloodLink Blog</div>
 
   </header>
@@ -60,29 +93,45 @@
       <p class="eyebrow">ERROR 404</p>
       <h1 id="error-title">This page went missing.</h1>
       <p>The link may be incorrect or the page may have moved. Return to BloodLink Blog, or take a quick break with one mini-game.</p>
-      <div class="error-actions"><a class="button-primary" id="back-home-button" href="/index.html" data-site-path="/index.html" style="display:inline-block;text-decoration:none">Back to BloodLink Blog</a></div>
+      <div class="error-actions"><a class="button-primary" id="back-home-button" href="./index.html" data-site-path="index.html" style="display:inline-block;text-decoration:none">Back to BloodLink Blog</a></div>
     </section>
 
-    <h2 class="game-heading">A little BloodLink break</h2>
-    <section class="game-grid" aria-label="Offline game">
+
+    <h2 class="game-heading">Choose a quick BloodLink game</h2>
+    <section class="game-grid" aria-label="Offline mini-games">
+      <article class="game-card match-card">
+        <h3>🩸 Blood Group Match</h3>
+        <p>Flip the cards and find all eight matching blood-group pairs in as few moves as possible.</p>
+        <div class="game-status match-status"><span id="match-moves">Moves: 0</span><strong id="match-best">Best: —</strong><button class="game-mute" id="match-mute" type="button" aria-label="Toggle sound">🔊</button></div>
+        <div id="match-grid" class="match-grid noselect" aria-label="Blood group matching cards"></div>
+        <div id="match-win" class="match-win" aria-live="polite" hidden></div>
+        <button class="game-button full" id="match-new" type="button">New game</button>
+        <p class="game-tip">Match A+, A−, B+, B−, AB+, AB−, O+ and O−. Sound can be muted.</p>
+      </article>
+
       <article class="game-card rescue-card">
         <h3>🚑 BloodLink Rescue Rush</h3>
-        <p>Collect BloodLink-red drops, avoid contaminated sample markers, and beat your best score. A clean red-and-white mini arcade game.</p>
-        <button class="game-button" id="rescue-start" type="button">Start rescue</button>
-        <div class="game-status" id="rescue-status" aria-live="polite">30 seconds · Score: 0 · Lives: 3</div>
+        <p>Collect red blood drops, avoid green contaminated samples, and keep playing until all three lives are lost. No countdown timer.</p>
+        <div class="game-status rescue-status"><strong id="rescue-score">Score: 0</strong><span id="rescue-lives" class="rescue-lives">❤❤❤</span><button class="game-mute" id="rescue-mute" type="button" aria-label="Toggle sound">🔊</button></div>
         <div class="rescue-arena" id="rescue-arena">
-          <canvas id="rescue-canvas" width="640" height="300" role="img" aria-label="Arcade game: move the basket to catch red blood drops and avoid green germs."></canvas>
+          <canvas id="rescue-canvas" width="640" height="500" role="img" aria-label="Move the basket to catch red blood drops and avoid green germs."></canvas>
+          <div class="rescue-overlay" id="rescue-overlay">
+            <strong id="rescue-overlay-title">Collect the blood drops</strong>
+            <span id="rescue-overlay-subtitle">Avoid germs. Drag your finger or use the buttons.</span>
+          </div>
         </div>
         <div class="rescue-controls" aria-label="Move basket controls">
-          <button class="rescue-control" id="rescue-left" type="button" aria-label="Move basket left">← Left</button>
-          <button class="rescue-control" id="rescue-right" type="button" aria-label="Move basket right">Right →</button>
+          <button class="rescue-control" id="rescue-left" type="button">← Left</button>
+          <button class="rescue-control" id="rescue-right" type="button">Right →</button>
         </div>
-        <div class="rescue-legend"><span><i class="legend-dot legend-drop"></i> Catch drops: +10</span><span><i class="legend-dot legend-germ"></i> Avoid germs: −1 life</span></div>
+        <button class="game-button full" id="rescue-start" type="button">Start rescue</button>
+        <div class="rescue-legend"><span><i class="legend-dot legend-drop"></i> Catch drops: +10</span><span><i class="legend-dot legend-germ"></i> Avoid germs: −1 life</span><span id="rescue-best">Best score: 0</span></div>
+        <p class="game-tip">Use the on-screen buttons, drag the basket, or press ← / → on a keyboard.</p>
       </article>
     </section>
-    <p class="game-footnote">This mini-game runs locally in your browser. Your score is not uploaded. For entertainment only; it is not medical guidance.</p>
+    <p class="game-footnote">Both games run locally in this page. Scores stay in this browser and are not uploaded. Games are for entertainment only, not medical guidance.</p>
   </main>
-  <footer class="footer"><a href="/index.html" data-site-path="/index.html" class="footer-brand">BloodLink <span>Blog</span></a><p>Donate blood. Share knowledge. Save lives.</p><small>© 2026 BloodLink Blog · <a href="/privacy.html" data-site-path="/privacy.html">Privacy Policy</a></small></footer>
+  <footer class="footer"><a href="./index.html" data-site-path="index.html" class="footer-brand">BloodLink <span>Blog</span></a><p>Donate blood. Share knowledge. Save lives.</p><small>© 2026 BloodLink Blog · <a href="./privacy.html" data-site-path="privacy.html">Privacy Policy</a></small></footer>
 
   <script>
   // Navigation that works on a GitHub Pages user site or a project subpath.
@@ -131,105 +180,261 @@
   </script>
   <script>
   (() => {
-    // BloodLink Rescue Rush: one lightweight offline game.
-    const rescueStart = document.getElementById('rescue-start');
-    const rescueCanvas = document.getElementById('rescue-canvas');
-    const rescueCtx = rescueCanvas.getContext('2d');
-    const rescueStatus = document.getElementById('rescue-status');
-    const rescueLeft = document.getElementById('rescue-left');
-    const rescueRight = document.getElementById('rescue-right');
-    const rescueArena = document.getElementById('rescue-arena');
-    let rescueActive = false, rescueScore = 0, rescueLives = 3, rescueSeconds = 30;
-    let basketX = rescueCanvas.width / 2, rescueObjects = [], rescueLast = 0, rescueSpawn = 0, rescueRaf = 0, rescueClock = null, rescuePixelRatio = 1;
-    const rescueKeys = {left:false,right:false};
-    function resizeRescueCanvas(){
-      const ratio = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
-      rescuePixelRatio = ratio;
-      const width = Math.max(280, rescueArena.clientWidth || 320);
-      rescueCanvas.width = Math.round(width * ratio);
-      rescueCanvas.height = Math.round(250 * ratio);
-      rescueCanvas.style.height = '250px';
-      rescueCtx.setTransform(ratio,0,0,ratio,0,0);
-      basketX = Math.max(26, Math.min(width-26, basketX * width / Math.max(1, rescueCanvas.clientWidth || width)));
-      drawRescueScene();
-    }
-    function rescueW(){return rescueCanvas.width / rescuePixelRatio}
-    function rescueH(){return 250}
-    function drawRescueScene(){
-      const w = rescueW(), h = rescueH();
-      rescueCtx.clearRect(0,0,w,h);
-      const grad = rescueCtx.createLinearGradient(0,0,0,h); grad.addColorStop(0,'#f3f6fb'); grad.addColorStop(1,'#ffffff');
-      rescueCtx.fillStyle=grad; rescueCtx.fillRect(0,0,w,h);
-      rescueCtx.strokeStyle='#e4e9f1'; rescueCtx.lineWidth=1;
-      for(let y=26;y<h;y+=34){rescueCtx.beginPath();rescueCtx.moveTo(0,y);rescueCtx.lineTo(w,y);rescueCtx.stroke();}
-      // A subtle BloodLink-red accent line gives the playfield the same branded feel as the site.
-      rescueCtx.fillStyle='#c90012'; rescueCtx.globalAlpha=.08; rescueCtx.fillRect(0,0,w,4); rescueCtx.globalAlpha=1;
-      if(!rescueActive && rescueScore===0){
-        rescueCtx.fillStyle='#111a2d'; rescueCtx.textAlign='center'; rescueCtx.font='800 15px system-ui';
-        rescueCtx.fillText('COLLECT THE BLOOD DROPS',w/2,h/2-14);
-        rescueCtx.fillStyle='#647084'; rescueCtx.font='12px system-ui'; rescueCtx.fillText('Avoid contaminated samples · Move left or right',w/2,h/2+10);
+    // Resolve homepage links relative to the current GitHub Pages project path.
+    const home = new URL('./index.html', location.href);
+    document.querySelectorAll('[data-site-path]').forEach(a => a.href = new URL(a.dataset.sitePath.replace(/^\//,''), home).href);
+    const back = document.getElementById('back-button');
+    back.addEventListener('click', event => {
+      if (history.length > 1 && document.referrer && new URL(document.referrer).origin === location.origin) {
+        event.preventDefault(); history.back();
       }
-      rescueObjects.forEach(o=>{
-        rescueCtx.save(); rescueCtx.translate(o.x,o.y);
-        if(o.type==='drop'){
-          rescueCtx.fillStyle='#c90012'; rescueCtx.beginPath(); rescueCtx.moveTo(0,-o.r); rescueCtx.bezierCurveTo(o.r*.85,-o.r*.1,o.r,o.r*.45,0,o.r); rescueCtx.bezierCurveTo(-o.r,o.r*.45,-o.r*.85,-o.r*.1,0,-o.r); rescueCtx.fill();
-          rescueCtx.fillStyle='#ff9aa4'; rescueCtx.beginPath(); rescueCtx.arc(-o.r*.25,-o.r*.1,Math.max(2,o.r*.16),0,Math.PI*2); rescueCtx.fill();
-        }else{
-          // Contaminated sample: a clean warning badge in the BloodLink palette.
-          rescueCtx.fillStyle='#e7f7f0'; rescueCtx.strokeStyle='#078e69'; rescueCtx.lineWidth=2;
-          rescueCtx.beginPath(); rescueCtx.roundRect(-o.r*.82,-o.r*.82,o.r*1.64,o.r*1.64,5); rescueCtx.fill(); rescueCtx.stroke();
-          rescueCtx.fillStyle='#078e69'; rescueCtx.font='900 '+Math.max(10,o.r*1.15)+'px system-ui'; rescueCtx.textAlign='center'; rescueCtx.textBaseline='middle'; rescueCtx.fillText('!',0,1); rescueCtx.textBaseline='alphabetic';
-        }
-        rescueCtx.restore();
-      });
-      // Basket / collection tray
-      const bx=Math.max(24,Math.min(w-24,basketX));
-      rescueCtx.fillStyle='#c90012'; rescueCtx.beginPath(); rescueCtx.roundRect(bx-29,h-32,58,22,8); rescueCtx.fill();
-      rescueCtx.strokeStyle='#a90010'; rescueCtx.lineWidth=3; rescueCtx.beginPath(); rescueCtx.arc(bx,h-31,17,Math.PI,0); rescueCtx.stroke();
-      // Tiny white blood-drop mark inspired by the BloodLink app icon.
-      rescueCtx.fillStyle='#fff'; rescueCtx.beginPath(); rescueCtx.moveTo(bx,h-28); rescueCtx.bezierCurveTo(bx-5,h-22,bx-6,h-18,bx,h-17); rescueCtx.bezierCurveTo(bx+6,h-18,bx+5,h-22,bx,h-28); rescueCtx.fill();
-      rescueCtx.fillStyle='#c90012'; rescueCtx.beginPath(); rescueCtx.arc(bx,h-20,2.1,0,Math.PI*2); rescueCtx.fill();
-    }
-    function updateRescueStatus(){rescueStatus.textContent = rescueSeconds+' seconds · Score: '+rescueScore+' · Lives: '+rescueLives;}
-    function finishRescue(message){
-      rescueActive=false; clearInterval(rescueClock); cancelAnimationFrame(rescueRaf); rescueStart.textContent='Play again';
-      rescueStatus.textContent=message+' Final score: '+rescueScore+' · Lives left: '+rescueLives;
-      drawRescueScene();
-    }
-    function rescueFrame(now){
-      if(!rescueActive)return;
-      const w=rescueW(),h=rescueH(); const dt=Math.min(32,now-rescueLast||16); rescueLast=now;
-      if(rescueKeys.left) basketX-=dt*.28; if(rescueKeys.right) basketX+=dt*.28;
-      basketX=Math.max(26,Math.min(w-26,basketX)); rescueSpawn+=dt;
-      const interval=Math.max(320,720-rescueScore*2);
-      if(rescueSpawn>interval){rescueSpawn=0;const germ=Math.random()<.29;rescueObjects.push({x:18+Math.random()*(w-36),y:-18,r:germ?9:11,type:germ?'germ':'drop',speed:1.35+Math.random()*1.15+rescueScore*.012});}
-      rescueObjects.forEach(o=>{o.y+=o.speed*dt*.09;o.x+=Math.sin((now+o.y)*.002)*.22;});
-      rescueObjects=rescueObjects.filter(o=>{
-        if(o.y>h-43 && o.y<h-7 && Math.abs(o.x-basketX)<29){
-          if(o.type==='drop'){rescueScore+=10;}else{rescueLives--;}
-          updateRescueStatus(); return false;
-        }
-        return o.y<h+20;
-      });
-      drawRescueScene();
-      if(rescueLives<=0){finishRescue('Rescue over!');return;}
-      rescueRaf=requestAnimationFrame(rescueFrame);
-    }
-    function startRescue(){
-      clearInterval(rescueClock);cancelAnimationFrame(rescueRaf);rescueObjects=[];rescueScore=0;rescueLives=3;rescueSeconds=30;rescueSpawn=0;rescueLast=0;basketX=rescueW()/2;rescueActive=true;rescueStart.textContent='Restart';updateRescueStatus();
-      rescueClock=setInterval(()=>{if(!rescueActive)return;rescueSeconds--;updateRescueStatus();if(rescueSeconds<=0)finishRescue('Time up!');},1000);
-      rescueRaf=requestAnimationFrame(rescueFrame);
-    }
-    rescueStart.addEventListener('click',startRescue);
-    rescueLeft.addEventListener('pointerdown',()=>rescueKeys.left=true); rescueLeft.addEventListener('pointerup',()=>rescueKeys.left=false); rescueLeft.addEventListener('pointerleave',()=>rescueKeys.left=false); rescueLeft.addEventListener('pointercancel',()=>rescueKeys.left=false);
-    rescueRight.addEventListener('pointerdown',()=>rescueKeys.right=true); rescueRight.addEventListener('pointerup',()=>rescueKeys.right=false); rescueRight.addEventListener('pointerleave',()=>rescueKeys.right=false); rescueRight.addEventListener('pointercancel',()=>rescueKeys.right=false);
-    window.addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight'].includes(e.key)){e.preventDefault();if(e.key==='ArrowLeft')rescueKeys.left=true;else rescueKeys.right=true;}});
-    window.addEventListener('keyup',e=>{if(e.key==='ArrowLeft')rescueKeys.left=false;if(e.key==='ArrowRight')rescueKeys.right=false;});
-    if('ResizeObserver' in window){new ResizeObserver(resizeRescueCanvas).observe(rescueArena);}else{window.addEventListener('resize',resizeRescueCanvas);}
-    resizeRescueCanvas();
-
-
+    });
   })();
+  (() => {
+    // ---- Sound effects made with the Web Audio API (no audio files needed) ----
+    const Sound = (() => {
+      let ctx = null, muted = false;
+      try { muted = localStorage.getItem('bloodlink_404_game_muted') === '1'; } catch (e) {}
+      function audio() {
+        if (!ctx) { const C = window.AudioContext || window.webkitAudioContext; if (!C) return null; try { ctx = new C(); } catch (e) { return null; } }
+        if (ctx.state === 'suspended') ctx.resume();
+        return ctx;
+      }
+      function tone(freq, dur, type, vol, slideTo, delay) {
+        if (muted) return; const a = audio(); if (!a) return;
+        const t = a.currentTime + (delay || 0), o = a.createOscillator(), g = a.createGain();
+        o.type = type || 'sine'; o.frequency.setValueAtTime(freq, t);
+        if (slideTo) o.frequency.exponentialRampToValueAtTime(slideTo, t + dur);
+        g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol || .15, t + .012); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+        o.connect(g); g.connect(a.destination); o.start(t); o.stop(t + dur + .02);
+      }
+      return {
+        isMuted: () => muted,
+        setMuted: v => { muted = v; try { localStorage.setItem('bloodlink_404_game_muted', v ? '1' : '0'); } catch (e) {} },
+        unlock: () => { audio(); },
+        start: () => { tone(440, .12, 'triangle', .14); tone(660, .16, 'triangle', .14, 0, .11); },
+        drop: () => tone(700, .09, 'sine', .16, 1100),
+        germ: () => tone(200, .28, 'sawtooth', .13, 70),
+        over: () => { tone(440, .2, 'triangle', .15); tone(349, .2, 'triangle', .15, 0, .18); tone(262, .4, 'triangle', .15, 0, .36); },
+        win: () => [523, 659, 784, 1047].forEach((f, i) => tone(f, .18, 'triangle', .15, 0, i * .12)),
+        flip: () => tone(520, .06, 'triangle', .12),
+        match: () => { tone(600, .1, 'sine', .15); tone(900, .16, 'sine', .15, 0, .09); },
+        miss: () => tone(240, .16, 'square', .07, 180)
+      };
+    })();
+    function wireMute(btn) {
+      const paint = () => { btn.textContent = Sound.isMuted() ? '🔇' : '🔊'; btn.setAttribute('aria-label', Sound.isMuted() ? 'Turn sound on' : 'Turn sound off'); };
+      paint();
+      btn.addEventListener('click', () => { Sound.setMuted(!Sound.isMuted()); if (!Sound.isMuted()) Sound.unlock(); paint(); });
+    }
+
+    const $ = id => document.getElementById(id);
+    const GROUPS = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
+    const KEY = 'bloodlink_404_match_best';
+    wireMute($('match-mute'));
+    let cards = [], open = [], done = [], moves = 0, locked = false, timer = null;
+    const best = () => { try { const v = localStorage.getItem(KEY); return v === null ? null : Number(v); } catch (e) { return null; } };
+    const paintBest = () => { $('match-best').textContent = 'Best: ' + (best() === null ? '—' : best()); };
+    function shuffle() {
+      const a = GROUPS.concat(GROUPS).map((v, i) => ({id: i, v}));
+      for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+      return a;
+    }
+    function render() {
+      const grid = $('match-grid'); grid.textContent = '';
+      cards.forEach(c => {
+        const shown = open.includes(c.id) || done.includes(c.v);
+        const b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', shown ? c.v : 'Hidden card');
+        b.style.cssText = 'aspect-ratio:1;border-radius:16px;font:inherit;font-weight:900;font-size:1.15rem;cursor:pointer;border:2px solid;transition:background .2s,border-color .2s;touch-action:manipulation;' +
+          (done.includes(c.v) ? 'background:#e7f7f0;border-color:#078e69;color:#056a4e' : shown ? 'background:#fff;border-color:#c90012;color:#c90012' : 'background:#c90012;border-color:#c90012;color:#fff');
+        b.textContent = shown ? c.v : '🩸';
+        b.addEventListener('click', () => tap(c));
+        grid.appendChild(b);
+      });
+      $('match-moves').textContent = 'Moves: ' + moves;
+    }
+    function tap(c) {
+      if (locked || open.includes(c.id) || done.includes(c.v)) return;
+      Sound.unlock(); Sound.flip(); open.push(c.id); render();
+      if (open.length === 2) {
+        moves++; locked = true;
+        const [a, b] = open.map(id => cards.find(x => x.id === id));
+        if (a.v === b.v) {
+          timer = setTimeout(() => {
+            done.push(a.v); open = []; locked = false; render();
+            if (done.length === GROUPS.length) win(); else Sound.match();
+          }, 350);
+        } else {
+          timer = setTimeout(() => { Sound.miss(); open = []; locked = false; render(); }, 800);
+        }
+        $('match-moves').textContent = 'Moves: ' + moves;
+      }
+    }
+    function win() {
+      Sound.win(); let extra = '';
+      if (best() === null || moves < best()) { try { localStorage.setItem(KEY, String(moves)); } catch (e) {} extra = ' New best!'; }
+      paintBest(); const w = $('match-win'); w.style.display = 'block'; w.textContent = 'Great! All pairs matched in ' + moves + ' moves.' + extra;
+      $('match-new').textContent = 'Play again';
+    }
+    function reset() { clearTimeout(timer); cards = shuffle(); open = []; done = []; moves = 0; locked = false; $('match-win').style.display = 'none'; $('match-new').textContent = 'New game'; render(); }
+    $('match-new').addEventListener('click', reset);
+    paintBest(); reset();
+  })();
+  (() => {
+    // ---- Sound effects made with the Web Audio API (no audio files needed) ----
+    const Sound = (() => {
+      let ctx = null, muted = false;
+      try { muted = localStorage.getItem('bloodlink_404_game_muted') === '1'; } catch (e) {}
+      function audio() {
+        if (!ctx) { const C = window.AudioContext || window.webkitAudioContext; if (!C) return null; try { ctx = new C(); } catch (e) { return null; } }
+        if (ctx.state === 'suspended') ctx.resume();
+        return ctx;
+      }
+      function tone(freq, dur, type, vol, slideTo, delay) {
+        if (muted) return; const a = audio(); if (!a) return;
+        const t = a.currentTime + (delay || 0), o = a.createOscillator(), g = a.createGain();
+        o.type = type || 'sine'; o.frequency.setValueAtTime(freq, t);
+        if (slideTo) o.frequency.exponentialRampToValueAtTime(slideTo, t + dur);
+        g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol || .15, t + .012); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+        o.connect(g); g.connect(a.destination); o.start(t); o.stop(t + dur + .02);
+      }
+      return {
+        isMuted: () => muted,
+        setMuted: v => { muted = v; try { localStorage.setItem('bloodlink_404_game_muted', v ? '1' : '0'); } catch (e) {} },
+        unlock: () => { audio(); },
+        start: () => { tone(440, .12, 'triangle', .14); tone(660, .16, 'triangle', .14, 0, .11); },
+        drop: () => tone(700, .09, 'sine', .16, 1100),
+        germ: () => tone(200, .28, 'sawtooth', .13, 70),
+        over: () => { tone(440, .2, 'triangle', .15); tone(349, .2, 'triangle', .15, 0, .18); tone(262, .4, 'triangle', .15, 0, .36); },
+        win: () => [523, 659, 784, 1047].forEach((f, i) => tone(f, .18, 'triangle', .15, 0, i * .12)),
+        flip: () => tone(520, .06, 'triangle', .12),
+        match: () => { tone(600, .1, 'sine', .15); tone(900, .16, 'sine', .15, 0, .09); },
+        miss: () => tone(240, .16, 'square', .07, 180)
+      };
+    })();
+    function wireMute(btn) {
+      const paint = () => { btn.textContent = Sound.isMuted() ? '🔇' : '🔊'; btn.setAttribute('aria-label', Sound.isMuted() ? 'Turn sound on' : 'Turn sound off'); };
+      paint();
+      btn.addEventListener('click', () => { Sound.setMuted(!Sound.isMuted()); if (!Sound.isMuted()) Sound.unlock(); paint(); });
+    }
+
+    const $ = id => document.getElementById(id);
+    const canvas = $('rescue-canvas'), ctx = canvas.getContext('2d'), arena = $('rescue-arena');
+    wireMute($('rescue-mute'));
+    const H = 250; let ratio = 1;
+    const S = {active:false,score:0,lives:3,seconds:0,basketX:160,objs:[],last:0,spawn:0,raf:0,clock:null,left:false,right:false};
+    const best0 = () => { try { return Number(localStorage.getItem('bloodlink_404_rescue_best')) || 0; } catch (e) { return 0; } };
+    $('rescue-best').textContent = 'Best score: ' + best0();
+    const W = () => canvas.width / ratio;
+    function resize() {
+      ratio = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+      const w = Math.max(240, arena.clientWidth || 320);
+      canvas.width = Math.round(w * ratio); canvas.height = Math.round(H * ratio);
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+      S.basketX = Math.max(26, Math.min(w - 26, S.basketX)); draw();
+    }
+    function rr(x, y, w, h, r) { ctx.beginPath(); if (ctx.roundRect) ctx.roundRect(x, y, w, h, r); else ctx.rect(x, y, w, h); }
+    function corona(r) {
+      ctx.strokeStyle = '#078e69'; ctx.lineWidth = 2; ctx.fillStyle = '#078e69';
+      for (let i = 0; i < 12; i++) {
+        const a = i * Math.PI * 2 / 12, c = Math.cos(a), s = Math.sin(a);
+        ctx.beginPath(); ctx.moveTo(c * r * .9, s * r * .9); ctx.lineTo(c * r * 1.35, s * r * 1.35); ctx.stroke();
+        ctx.beginPath(); ctx.arc(c * r * 1.5, s * r * 1.5, r * .2, 0, Math.PI * 2); ctx.fill();
+      }
+      ctx.fillStyle = '#3fc79a'; ctx.beginPath(); ctx.arc(0, 0, r, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = '#078e69';
+      [[-.35, -.3, .18], [.3, -.1, .14], [-.05, .38, .16]].forEach(p => { ctx.beginPath(); ctx.arc(p[0] * r, p[1] * r, p[2] * r, 0, Math.PI * 2); ctx.fill(); });
+    }
+    function draw() {
+      const w = W();
+      ctx.clearRect(0, 0, w, H);
+      const g = ctx.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#f3f6fb'); g.addColorStop(1, '#fff');
+      ctx.fillStyle = g; ctx.fillRect(0, 0, w, H);
+      ctx.strokeStyle = '#e4e9f1'; ctx.lineWidth = 1;
+      for (let y = 26; y < H; y += 34) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+      S.objs.forEach(o => {
+        ctx.save(); ctx.translate(o.x, o.y);
+        if (o.type === 'drop') {
+          ctx.fillStyle = '#c90012'; ctx.beginPath(); ctx.moveTo(0, -o.r);
+          ctx.bezierCurveTo(o.r * .85, -o.r * .1, o.r, o.r * .45, 0, o.r); ctx.bezierCurveTo(-o.r, o.r * .45, -o.r * .85, -o.r * .1, 0, -o.r); ctx.fill();
+          ctx.fillStyle = '#ff9aa4'; ctx.beginPath(); ctx.arc(-o.r * .25, -o.r * .1, Math.max(2, o.r * .16), 0, Math.PI * 2); ctx.fill();
+        } else corona(o.r);
+        ctx.restore();
+      });
+      const bx = Math.max(24, Math.min(w - 24, S.basketX));
+      ctx.fillStyle = '#c90012'; rr(bx - 29, H - 32, 58, 22, 8); ctx.fill();
+      ctx.strokeStyle = '#a90010'; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(bx, H - 31, 17, Math.PI, 0); ctx.stroke();
+      ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.moveTo(bx, H - 28); ctx.bezierCurveTo(bx - 5, H - 22, bx - 6, H - 18, bx, H - 17); ctx.bezierCurveTo(bx + 6, H - 18, bx + 5, H - 22, bx, H - 28); ctx.fill();
+    }
+    function hud() {
+      $('rescue-score').textContent = 'Score: ' + S.score;
+      $('rescue-lives').textContent = '❤'.repeat(Math.max(0, S.lives)) || '—';
+    }
+    function stop() { S.active = false;  cancelAnimationFrame(S.raf); }
+    function finish(msg) {
+      stop(); Sound.over(); draw(); hud();
+      let extra = '';
+      if (S.score > best0()) { try { localStorage.setItem('bloodlink_404_rescue_best', String(S.score)); } catch (e) {} extra = ' · New best score!'; }
+      $('rescue-best').textContent = 'Best score: ' + best0();
+      $('rescue-overlay-title').textContent = msg; $('rescue-overlay-subtitle').textContent = 'Your score: ' + S.score + extra;
+      $('rescue-overlay').style.display = 'flex'; $('rescue-start').textContent = 'Play again';
+    }
+    function frame(now) {
+      if (!S.active) return;
+      const w = W(), dt = Math.min(32, now - S.last || 16); S.last = now;
+      if (S.left) S.basketX -= dt * .28; if (S.right) S.basketX += dt * .28;
+      S.basketX = Math.max(26, Math.min(w - 26, S.basketX)); S.spawn += dt;
+      if (S.spawn > Math.max(320, 720 - S.score * 2)) {
+        S.spawn = 0; const germ = Math.random() < .29;
+        S.objs.push({x: 18 + Math.random() * (w - 36), y: -18, r: germ ? 10 : 11, type: germ ? 'germ' : 'drop', speed: 1.35 + Math.random() * 1.15 + S.score * .012});
+      }
+      S.objs.forEach(o => { o.y += o.speed * dt * .09; o.x += Math.sin((now + o.y) * .002) * .22; });
+      S.objs = S.objs.filter(o => {
+        if (o.y > H - 43 && o.y < H - 7 && Math.abs(o.x - S.basketX) < 29) {
+          if (o.type === 'drop') { S.score += 10; Sound.drop(); } else { S.lives--; Sound.germ(); }
+          hud(); return false;
+        }
+        return o.y < H + 20;
+      });
+      draw();
+      if (S.lives <= 0) { finish('Game over!'); return; }
+      S.raf = requestAnimationFrame(frame);
+    }
+    function start() {
+      stop(); Object.assign(S, {objs: [], score: 0, lives: 3,  spawn: 0, last: 0, basketX: W() / 2, active: true});
+      Sound.unlock(); Sound.start(); hud(); $('rescue-overlay').style.display = 'none'; $('rescue-start').textContent = 'Restart';
+      
+      S.raf = requestAnimationFrame(frame);
+    }
+    $('rescue-start').addEventListener('click', start);
+    // hold buttons (and stop the phone's long-press buzz / menu)
+    [['rescue-left', 'left'], ['rescue-right', 'right']].forEach(([id, key]) => {
+      const el = $(id);
+      el.addEventListener('pointerdown', () => S[key] = true);
+      ['pointerup', 'pointerleave', 'pointercancel'].forEach(ev => el.addEventListener(ev, () => S[key] = false));
+      el.addEventListener('touchstart', e => e.preventDefault(), {passive: false});
+      el.addEventListener('contextmenu', e => e.preventDefault());
+    });
+    canvas.addEventListener('touchstart', e => e.preventDefault(), {passive: false});
+    canvas.addEventListener('contextmenu', e => e.preventDefault());
+    const moveTo = x => { if (!S.active) return; const r = canvas.getBoundingClientRect(); S.basketX = Math.max(26, Math.min(W() - 26, x - r.left)); };
+    canvas.addEventListener('pointerdown', e => moveTo(e.clientX));
+    canvas.addEventListener('pointermove', e => { if (e.buttons > 0 || e.pointerType === 'touch') moveTo(e.clientX); });
+    window.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') { S.left = true; e.preventDefault(); } if (e.key === 'ArrowRight') { S.right = true; e.preventDefault(); } });
+    window.addEventListener('keyup', e => { if (e.key === 'ArrowLeft') S.left = false; if (e.key === 'ArrowRight') S.right = false; });
+    window.__rush = S;
+    if ('ResizeObserver' in window) new ResizeObserver(resize).observe(arena); else window.addEventListener('resize', resize);
+    resize();
+  })();
+</script>
+<script id="bloodlink-sw-register">
+    if ('serviceWorker' in navigator && location.protocol === 'https:') {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js?v=20261121-2', { updateViaCache: 'none' })
+          .then(reg => reg.update().catch(() => {}))
+          .catch(() => {});
+      });
+    }
   </script>
 </body>
 </html>
