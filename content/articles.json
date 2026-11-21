@@ -51,7 +51,7 @@
     "date": "2026-10-08",
     "readMinutes": 3,
     "author": "BloodLink Blog",
-    "featured": false,
+    "featured": true,
     "image": "assets/uploads/blog/1633433072036.jpg",
     "english": {
       "category": "Community",
