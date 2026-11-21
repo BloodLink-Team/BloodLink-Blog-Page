@@ -1,0 +1,146 @@
+# Pages CMS configuration for BloodLink Blog
+# Content is stored in one JSON array so newly added posts are automatically read by the website.
+media:
+  - name: blog_images
+    label: Blog images
+    input: assets/uploads/blog
+    output: assets/uploads/blog
+    extensions: [jpg, jpeg, png, webp, avif, gif]
+    categories: [image]
+    rename: safe
+
+content:
+  - name: articles
+    label: Blog articles
+    type: file
+    path: content/articles.json
+    format: json
+    list: true
+    fields:
+      - name: slug
+        label: URL slug (keep existing slug to preserve URL)
+        type: string
+        required: true
+        pattern: "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      - name: status
+        label: Publishing status
+        type: select
+        required: true
+        default: draft
+        options:
+          values:
+            - value: draft
+              label: Draft (not visible on website)
+            - value: published
+              label: Published (visible on website)
+      - name: date
+        label: Publication date
+        type: date
+        required: true
+      - name: readMinutes
+        label: Reading time (minutes)
+        type: number
+      - name: author
+        label: Author
+        type: string
+      - name: featured
+        label: Feature on homepage
+        type: boolean
+      - name: image
+        label: Featured image
+        type: image
+        required: true
+        options:
+          media: blog_images
+          path: .
+          extensions: [jpg, jpeg, png, webp, avif, gif]
+          rename: safe
+      - name: ogImage
+        label: Social sharing image (optional)
+        type: image
+        options:
+          media: blog_images
+          path: .
+          extensions: [jpg, jpeg, png, webp, avif]
+          rename: safe
+      - name: english
+        label: "ENGLISH VERSION — edit all English fields here"
+        type: object
+        fields:
+          - name: category
+            label: Category
+            type: string
+            required: true
+          - name: title
+            label: Article title
+            type: string
+            required: true
+          - name: excerpt
+            label: Short description
+            type: text
+            required: true
+          - name: imageAlt
+            label: Image alternative text (accessibility)
+            type: string
+            required: true
+          - name: body
+            label: Full English article
+            type: rich-text
+            required: true
+            options:
+              format: markdown
+              switcher: true
+              media: blog_images
+              path: .
+              extensions: [jpg, jpeg, png, webp, avif]
+          - name: seoTitle
+            label: SEO title (optional)
+            type: string
+          - name: seoDescription
+            label: SEO description (optional)
+            type: text
+      - name: bangla
+        label: "বাংলা সংস্করণ — সব বাংলা তথ্য এখানে লিখুন"
+        type: object
+        fields:
+          - name: category
+            label: বিভাগ
+            type: string
+            required: true
+          - name: title
+            label: প্রবন্ধের শিরোনাম
+            type: string
+            required: true
+          - name: excerpt
+            label: সংক্ষিপ্ত বিবরণ
+            type: text
+            required: true
+          - name: imageAlt
+            label: ছবির বিকল্প বর্ণনা
+            type: string
+            required: true
+          - name: body
+            label: সম্পূর্ণ বাংলা প্রবন্ধ
+            type: rich-text
+            required: true
+            options:
+              format: markdown
+              switcher: true
+              media: blog_images
+              path: .
+              extensions: [jpg, jpeg, png, webp, avif]
+          - name: seoTitle
+            label: SEO শিরোনাম (ঐচ্ছিক)
+            type: string
+          - name: seoDescription
+            label: SEO বিবরণ (ঐচ্ছিক)
+            type: text
+
+settings:
+  content:
+    merge: true
+  commit:
+    templates:
+      create: "content: add BloodLink article"
+      update: "content: update BloodLink article"
+      delete: "content: delete BloodLink article"
