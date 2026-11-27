@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>BloodLink Blog</title>
+    <link>https://suchock.github.io/</link>
+    <description>Clear, reliable information about blood donation.</description>
+    <language>en</language>
+    <atom:link href="https://suchock.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <lastBuildDate>Tue, 20 Oct 2026 12:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Your First Blood Donation: What to Expect</title>
+      <link>https://suchock.github.io/blog.html?slug=first-time-blood-donation</link>
+      <guid isPermaLink="true">https://suchock.github.io/blog.html?slug=first-time-blood-donation</guid>
+      <pubDate>Tue, 20 Oct 2026 12:00:00 GMT</pubDate>
+      <category>Donor Guide</category>
+      <description>A calm, practical guide to preparing for a donation and knowing what happens at the centre.</description>
+    </item>
+    <item>
+      <title>Blood Groups Explained: A, B, AB, O and Rh</title>
+      <link>https://suchock.github.io/blog.html?slug=blood-groups-basics</link>
+      <guid isPermaLink="true">https://suchock.github.io/blog.html?slug=blood-groups-basics</guid>
+      <pubDate>Wed, 14 Oct 2026 12:00:00 GMT</pubDate>
+      <category>Blood Basics</category>
+      <description>Understand the ABO and Rh systems, and why hospitals test compatibility before transfusion.</description>
+    </item>
+    <item>
+      <title>How to Support Someone Who Needs Blood</title>
+      <link>https://suchock.github.io/blog.html?slug=helping-a-blood-donor</link>
+      <guid isPermaLink="true">https://suchock.github.io/blog.html?slug=helping-a-blood-donor</guid>
+      <pubDate>Thu, 08 Oct 2026 12:00:00 GMT</pubDate>
+      <category>Community</category>
+      <description>Share accurate information, protect personal details, and coordinate safely with the hospital.</description>
+    </item>
+  </channel>
+</rss>

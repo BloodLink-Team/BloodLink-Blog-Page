@@ -1,19 +1,23 @@
 /* BloodLink Blog offline fallback + freshness policy.
    Network-first for pages and assets so published design updates are used as soon as reachable. */
-const CACHE_NAME = 'bloodlink-blog-shell-v20261121-cms1';
+const CACHE_NAME = 'bloodlink-blog-shell-v20261128-1';
 const SHELL = [
   './',
   './index.html',
   './blog.html',
+  './articles.html',
+  './about.html',
   './privacy.html',
   './404.html',
   './css/style.css',
   './js/config.js',
   './js/analytics.js',
+  './js/site.js',
   './js/articles-loader.js',
   './content/articles.json',
   './js/app.js',
-  './assets/bloodlink-logo.png'
+  './assets/bloodlink-logo.png',
+  './manifest.webmanifest'
 ];
 
 self.addEventListener('install', event => {

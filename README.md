@@ -30,16 +30,23 @@ This README is the main guide for editing, publishing, measuring, and maintainin
 ```text
 BloodLink-Blog/
 ├── index.html       Homepage, article list, and homepage SEO metadata
+├── articles.html    All articles: search and topic filters
+├── about.html       About page (text lives in js/app.js, in English and Bangla)
+├── feed.xml         RSS feed (rebuilt automatically)
+├── manifest.webmanifest   App name, colours and icons for "Add to home screen"
 ├── blog.html        Shared template for individual article URLs and dynamic metadata
 ├── 404.html         Custom not-found page (supported by GitHub Pages)
 ├── privacy.html     Privacy policy page
-├── sitemap.xml      List of public URLs for search engines
+├── sitemap.xml      List of public URLs for search engines (rebuilt automatically)
+├── scripts/generate-sitemap.mjs   Builds sitemap.xml from content/articles.json
+├── .github/workflows/update-sitemap.yml   Runs the script when the CMS saves an article
 ├── robots.txt       Search crawler instructions and sitemap location
 ├── css/
 │   └── style.css    Colors, layout, cards, mobile styling, loading indicators
 ├── js/
 │   ├── config.js    Website settings: URL, Analytics ID, report email, language
 │   ├── articles.js  All published blog articles (edit this for normal publishing)
+│   ├── site.js      Footer year, contact links from config.js, back-to-top button
 │   ├── analytics.js Loads GA4 only when a real Measurement ID is configured
 │   └── app.js       Search, filters, menu, language, rendering, and article metadata
 ├── assets/
@@ -432,41 +439,14 @@ After publishing, share the real public URL in a private test message or use the
 
 ## 10. Sitemap and robots.txt
 
-### What does a sitemap do?
+`sitemap.xml` and the RSS feed `feed.xml` are **generated automatically**. When you add, edit, publish or unpublish an article in Pages CMS, the CMS commits `content/articles.json`. That commit starts the GitHub Action in `.github/workflows/update-sitemap.yml`, which runs `scripts/generate-sitemap.mjs`, commits the new `sitemap.xml` and `feed.xml` and asks GitHub Pages to redeploy. It usually finishes within a minute or two.
 
-`sitemap.xml` lists the canonical public URLs you want search engines to discover. It does not force search engines to index them.
-
-The current sitemap includes the homepage, privacy page, and the three starter article URLs. **Whenever you add or remove an article, update `sitemap.xml` manually** in this version.
-
-### Add a URL to `sitemap.xml`
-
-Open `sitemap.xml`. Copy a `<url>...</url>` entry and update the `<loc>` value to the exact public URL. For example:
-
-```xml
-<url>
-  <loc>https://YOUR-REAL-DOMAIN/blog.html?slug=healthy-donation-preparation</loc>
-</url>
-```
-
-Place the entry inside `<urlset>`. Use the exact live domain and any repository subpath. Do not put example URLs or local URLs in the live sitemap. Remove entries for permanently deleted pages. Save the file as UTF-8 XML and check that tags are properly closed.
-
-If you add a custom domain or change the hosting path, update **every** `<loc>` entry. The homepage and privacy policy should also be listed. Do not add search-result pages, test pages, or URLs that return errors.
-
-### What does `robots.txt` do?
-
-The current `robots.txt` allows crawlers and points to the sitemap. Its sitemap line must match the actual public sitemap URL, for example:
-
-```text
-User-agent: *
-Allow: /
-Sitemap: https://YOUR-REAL-DOMAIN/sitemap.xml
-```
-
-Do not use `robots.txt` to hide private information. A disallow rule is not access control. Do not block CSS or JavaScript files that search engines need to render the site.
-
-### Submit the sitemap
-
-After publishing, open Google Search Console (Section 11), choose your property, select **Sitemaps**, enter `sitemap.xml` (or the full URL if requested), and submit. Check the status later for errors. Re-submit after major URL changes if needed.
+- Only articles with status **Published** are listed. Drafts never appear.
+- Each article gets a `lastmod` date from its publication date. The home page and `articles.html` use the newest article date.
+- To run it yourself: `node scripts/generate-sitemap.mjs`, then commit `sitemap.xml`.
+- The workflow needs the project folder to be the **root** of the repository, and under **Settings → Actions → General → Workflow permissions** choose "Read and write permissions".
+- If you change `siteUrl` in `js/config.js`, the next run updates every sitemap URL. `robots.txt` still needs its `Sitemap:` line edited by hand.
+- After the first publish, submit `https://suchock.github.io/sitemap.xml` once in Google Search Console. Google then re-reads it by itself.
 
 ## 11. Google Search Console
 
@@ -905,3 +885,15 @@ Use the rich-text editor for headings, paragraphs, bold/italic text, bullet list
 ## Backups and rollback
 
 The original `js/articles.js` has been preserved as `js/articles.legacy-backup.js` for reference. The live site no longer loads it. GitHub commit history is the primary rollback path: revert the relevant CMS commit if an edit breaks the content.
+
+
+---
+
+## Where to change things (current design)
+
+- **Contact email:** set `reportEmail` in `js/config.js`. The menu "Report a problem" link, the footer "Contact" link and the About page all pick it up. It is still the placeholder `bloodlink@example.com`.
+- **Homepage headline and intro:** `heading` and `intro` in `js/app.js` (English and Bangla blocks).
+- **Footer text and the medical disclaimer:** `footerText` and `footerDisclaimer` in `js/app.js`. The footer links are in each page's `<footer>`.
+- **About page text:** the `about*` keys in `js/app.js`.
+- **Logo and icons:** `assets/bloodlink-logo.png` has transparent corners. Browser and phone icons are `assets/icon-*.png` and `assets/apple-touch-icon.png`. The social-share image is `assets/og-card.png` (1200 x 630).
+- **Colours, type and spacing:** the variables at the top of `css/style.css`. The sections near the bottom of that file add to earlier ones, so edit the variables first.
