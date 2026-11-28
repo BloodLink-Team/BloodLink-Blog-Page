@@ -306,7 +306,7 @@
   });
 
   // Back button: remember the list position, filter and search, and put them back.
-  const LIST_KEY = "bloodlinkListState:" + location.pathname;
+  const LIST_KEY = "bloodlinkListState:" + location.pathname.replace(/index\.html$/, "");
   function saveListState() {
     if (!document.getElementById("blogGrid")) return;
     try {
@@ -317,7 +317,10 @@
     if (!document.getElementById("blogGrid")) return null;
     try { history.scrollRestoration = "manual"; } catch {}
     const nav = performance.getEntriesByType?.("navigation")?.[0];
-    if (!nav || nav.type !== "back_forward") return null;
+    // Restore after browser back, and after any link that leads back here from an article.
+    let fromArticle = false;
+    try { fromArticle = sessionStorage.getItem("bloodlinkFromArticle") === "1"; sessionStorage.removeItem("bloodlinkFromArticle"); } catch {}
+    if (nav?.type !== "back_forward" && !fromArticle) return null;
     try {
       const state = JSON.parse(sessionStorage.getItem(LIST_KEY) || "null");
       if (!state) return null;

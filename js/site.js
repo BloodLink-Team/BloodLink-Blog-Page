@@ -31,6 +31,10 @@
     scrollTo({ top: 0, behavior: smooth ? "smooth" : "auto" });
   });
 
+  // On an article page, mark that the visitor is about to return to a list page.
+  if (document.getElementById("articleView") || /blog\.html$/.test(location.pathname)) {
+    try { sessionStorage.setItem("bloodlinkFromArticle", "1"); } catch {}
+  }
   // Back link on an article: go back in history so the list keeps its scroll position.
   document.querySelectorAll(".back-link").forEach(link => {
     link.addEventListener("click", event => {
