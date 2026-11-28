@@ -126,6 +126,8 @@
     holder.querySelectorAll("[data-topic]").forEach(btn => btn.addEventListener("click", () => {
       selectedTopic = btn.dataset.topic;
       renderTopics(); renderBlogList();
+      const grid = document.getElementById("blogGrid");
+      if (grid) { grid.classList.remove("swap"); void grid.offsetWidth; grid.classList.add("swap"); }
     }));
   }
 
@@ -328,11 +330,11 @@
   function scrollBackTo(y) {
     let tries = 0;
     const step = () => {
-      scrollTo(0, y);
+      scrollTo({ top: y, behavior: "instant" });
       if (Math.abs(scrollY - y) > 2 && ++tries < 40) requestAnimationFrame(step);
     };
     step();
-    addEventListener("load", () => scrollTo(0, y), { once: true });
+    addEventListener("load", () => scrollTo({ top: y, behavior: "instant" }), { once: true });
   }
   addEventListener("pagehide", saveListState);
   document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") saveListState(); });

@@ -30,4 +30,13 @@
     const smooth = !matchMedia("(prefers-reduced-motion: reduce)").matches;
     scrollTo({ top: 0, behavior: smooth ? "smooth" : "auto" });
   });
+
+  // Back link on an article: go back in history so the list keeps its scroll position.
+  document.querySelectorAll(".back-link").forEach(link => {
+    link.addEventListener("click", event => {
+      let sameSite = false;
+      try { sameSite = !!document.referrer && new URL(document.referrer).origin === location.origin; } catch {}
+      if (sameSite && history.length > 1) { event.preventDefault(); history.back(); }
+    });
+  });
 })();
