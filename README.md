@@ -73,7 +73,7 @@ You can edit the files with a code editor that supports HTML, CSS, and JavaScrip
 
 ## 3. Publish or update the live website
 
-This project currently uses URLs based on `https://suchock.github.io/`. If you use a different GitHub Pages username/repository or a custom domain, update every example URL mentioned in this guide and the files.
+This project currently uses URLs based on `https://bloodlink-team.github.io/BloodLink-Blog-Page/`. If you use a different GitHub Pages username/repository or a custom domain, update every example URL mentioned in this guide and the files.
 
 ### Publish with GitHub Pages
 
@@ -202,14 +202,14 @@ You **do not** make a separate HTML file for every article, and you **do not** n
 2. Find this line:
 
    ```js
-   siteUrl: "https://suchock.github.io",
+   siteUrl: "https://bloodlink-team.github.io/BloodLink-Blog-Page",
    ```
 3. Replace only the URL inside the quotes with your real public website's base URL, then save.
 
 Examples:
 
-- If your site opens at `https://suchock.github.io/`, use `siteUrl: "https://suchock.github.io"`.
-- If it opens at `https://suchock.github.io/bloodlink-blog/`, use `siteUrl: "https://suchock.github.io/bloodlink-blog"` (include the repository subpath).
+- If your site opens at `https://bloodlink-team.github.io/BloodLink-Blog-Page/`, use `siteUrl: "https://bloodlink-team.github.io/BloodLink-Blog-Page"`.
+- If it opens at `https://bloodlink-team.github.io/BloodLink-Blog-Page/bloodlink-blog/`, use `siteUrl: "https://bloodlink-team.github.io/BloodLink-Blog-Page/bloodlink-blog"` (include the repository subpath).
 - If you use a custom domain such as `https://blog.example.com/`, use `siteUrl: "https://blog.example.com"`.
 
 Do not add `blog.html` or a slug to `siteUrl`; it should be the base address only, without a trailing slash. The app uses this setting to build the absolute article canonical URL and metadata URL. The links between the homepage and articles are relative links, so you don't have to edit each card or article when the domain changes.
@@ -228,9 +228,9 @@ You do **not** have to edit these files every time you publish a new article. On
 
 #### Example of a final article URL
 
-If your site base is `https://suchock.github.io` and the article slug is `healthy-donation-preparation`, the URL is:
+If your site base is `https://bloodlink-team.github.io/BloodLink-Blog-Page` and the article slug is `healthy-donation-preparation`, the URL is:
 
-`https://suchock.github.io/blog.html?slug=healthy-donation-preparation`
+`https://bloodlink-team.github.io/BloodLink-Blog-Page/blog.html?slug=healthy-donation-preparation`
 
 If your site is published in a repository subfolder, include that folder in the base URL. Always copy the real address from the browser after the site is deployed and test it in a private/incognito tab.
 
@@ -317,8 +317,8 @@ Open `js/config.js`. Current settings include:
 
 ```js
 siteName: "BloodLink Blog",
-siteUrl: "https://suchock.github.io",
-ogImage: "https://suchock.github.io/assets/bloodlink-logo.png",
+siteUrl: "https://bloodlink-team.github.io/BloodLink-Blog-Page",
+ogImage: "https://bloodlink-team.github.io/BloodLink-Blog-Page/assets/bloodlink-logo.png",
 googleAnalyticsId: "G-XXXXXXXXXX",
 reportEmail: "bloodlink@example.com",
 defaultLanguage: "en",
@@ -446,7 +446,7 @@ After publishing, share the real public URL in a private test message or use the
 - To run it yourself: `node scripts/generate-sitemap.mjs`, then commit `sitemap.xml`.
 - The workflow needs the project folder to be the **root** of the repository, and under **Settings → Actions → General → Workflow permissions** choose "Read and write permissions".
 - If you change `siteUrl` in `js/config.js`, the next run updates every sitemap URL. `robots.txt` still needs its `Sitemap:` line edited by hand.
-- After the first publish, submit `https://suchock.github.io/sitemap.xml` once in Google Search Console. Google then re-reads it by itself.
+- After the first publish, submit `https://bloodlink-team.github.io/BloodLink-Blog-Page/sitemap.xml` once in Google Search Console. Google then re-reads it by itself.
 
 ## 11. Google Search Console
 
@@ -640,7 +640,7 @@ Use this list before publishing a change:
 - **Privacy Policy** is in the footer.
 - The extra Home button was removed to avoid duplicate homepage actions.
 
-The current public site is expected at `https://suchock.github.io/`, so its base path is the domain root. If you later publish under a project subfolder such as `https://username.github.io/repository-name/`, update the `MANUAL_BASE_PATH` constant in `404.html` and test the links again.
+The current public site is expected at `https://bloodlink-team.github.io/BloodLink-Blog-Page/`, so its base path is the domain root. If you later publish under a project subfolder such as `https://username.github.io/repository-name/`, update the `MANUAL_BASE_PATH` constant in `404.html` and test the links again.
 
 ### Test after publishing
 
@@ -897,3 +897,8 @@ The original `js/articles.js` has been preserved as `js/articles.legacy-backup.j
 - **About page text:** the `about*` keys in `js/app.js`.
 - **Logo and icons:** `assets/bloodlink-logo.png` has transparent corners. Browser and phone icons are `assets/icon-*.png` and `assets/apple-touch-icon.png`. The social-share image is `assets/og-card.png` (1200 x 630).
 - **Colours, type and spacing:** the variables at the top of `css/style.css`. The sections near the bottom of that file add to earlier ones, so edit the variables first.
+
+
+## Live address
+
+The site is published at `https://bloodlink-team.github.io/BloodLink-Blog-Page/` and the sitemap is `https://bloodlink-team.github.io/BloodLink-Blog-Page/sitemap.xml`. Because this is a project page, search engines only read a `robots.txt` placed at the host root (`https://bloodlink-team.github.io/robots.txt`). The one in this repo still lists the sitemap, and Google Search Console accepts the sitemap URL directly.
