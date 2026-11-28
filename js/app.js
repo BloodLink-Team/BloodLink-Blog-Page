@@ -248,6 +248,7 @@
     toggle?.addEventListener("click", () => setOpen(!document.body.classList.contains("menu-open")));
     close?.addEventListener("click", () => setOpen(false));
     scrim?.addEventListener("click", () => setOpen(false));
+    scrim?.addEventListener("touchmove", e => e.preventDefault(), { passive: false });
     document.addEventListener("keydown", e => { if (e.key === "Escape") setOpen(false); });
     const here = location.pathname.split("/").pop() || "index.html";
     document.querySelectorAll(".menu-links a[href]").forEach(a => {
@@ -294,9 +295,45 @@
     });
     initMenu();
     initReadingProgress();
+    const restored = restoreListState();
     if (document.getElementById("blogGrid")) {
       setSEO("BloodLink Blog | Donate blood, save lives", "Explore practical guides, topics, and reliable information about blood donation.", absoluteURL(config.ogImage), absoluteURL("index.html"));
     }
     applyLanguage();
+    if (restored) scrollBackTo(restored.y);
   });
+
+  // Back button: remember the list position, filter and search, and put them back.
+  const LIST_KEY = "bloodlinkListState:" + location.pathname;
+  function saveListState() {
+    if (!document.getElementById("blogGrid")) return;
+    try {
+      sessionStorage.setItem(LIST_KEY, JSON.stringify({ y: Math.round(scrollY), topic: selectedTopic, q: document.getElementById("searchInput")?.value || "" }));
+    } catch {}
+  }
+  function restoreListState() {
+    if (!document.getElementById("blogGrid")) return null;
+    try { history.scrollRestoration = "manual"; } catch {}
+    const nav = performance.getEntriesByType?.("navigation")?.[0];
+    if (!nav || nav.type !== "back_forward") return null;
+    try {
+      const state = JSON.parse(sessionStorage.getItem(LIST_KEY) || "null");
+      if (!state) return null;
+      selectedTopic = state.topic || "all";
+      const input = document.getElementById("searchInput");
+      if (input) input.value = state.q || "";
+      return state;
+    } catch { return null; }
+  }
+  function scrollBackTo(y) {
+    let tries = 0;
+    const step = () => {
+      scrollTo(0, y);
+      if (Math.abs(scrollY - y) > 2 && ++tries < 40) requestAnimationFrame(step);
+    };
+    step();
+    addEventListener("load", () => scrollTo(0, y), { once: true });
+  }
+  addEventListener("pagehide", saveListState);
+  document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") saveListState(); });
 })();
