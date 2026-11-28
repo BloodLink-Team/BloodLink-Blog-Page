@@ -569,3 +569,12 @@ html[lang="bn"] .page-title { line-height: 1.3; letter-spacing: 0; }
 .to-top.show { opacity: 1; transform: none; pointer-events: auto; }
 .to-top:hover { color: var(--red); border-color: rgba(201, 0, 18, 0.4); }
 @media print { .to-top { display: none !important; } }
+
+/* Brand row: wordmark with the tagline directly underneath */
+.hero-brand { gap: 1rem; }
+.hero-logo-image { width: 3rem; height: 3rem; }
+.hero-brand-copy { flex-direction: column; align-items: flex-start; gap: 0; }
+.hero-brand-copy .tagline { font-size: 0.875rem; line-height: 1.25rem; color: var(--muted); }
+
+/* One brand mark everywhere: "Blog" in the brand red, like the footer */
+.hero-brand-copy h1 span, .hero-wordmark span, .brand-lockup strong span { color: var(--red); }

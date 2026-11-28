@@ -533,7 +533,7 @@ Never claim the site does not use analytics after you have enabled GA4. Keep the
 
 `404.html` is the themed error page for visitors who request a page that does not exist. GitHub Pages serves a root `404.html` for missing pages. Test it after publishing by opening a made-up path such as `https://YOUR-REAL-DOMAIN/this-page-should-not-exist`. Some local preview servers may show their own error page instead.
 
-The 404 page includes one small offline game: **BloodLink Rescue Rush**. Move the tray with the on-screen left/right buttons or keyboard arrow keys, catch red drops for points, and avoid green sample-warning markers. It runs locally in the browser without a game library and does not upload scores. Test the game on both mobile and desktop after publishing.
+The 404 page includes one small offline game: **BloodLink Rescue Rush**. Move the basket with the on-screen left/right buttons (shown on phones), the keyboard arrow keys or by dragging, catch red drops for points, and avoid green sample-warning markers. It runs locally in the browser without a game library and does not upload scores. Test the game on both mobile and desktop after publishing.
 
 ### Privacy policy
 
@@ -765,11 +765,11 @@ To adjust this later, edit the desktop `.page-shell` rule and the `.blog-grid, .
 
 ---
 
-## 17. Two offline mini-games on the 404 page
+## 17. The game on the 404 page
 
-The custom `404.html` now contains both **Blood Group Match** and **BloodLink Rescue Rush**. Both games are embedded in the 404 page, so they do not need separate pages or external game files. Rescue Rush has **no timer display or countdown**; it ends only when all three lives are lost. Scores and sound preferences are stored locally in the visitor's browser and are not uploaded.
+The custom `404.html` is built around one game, **BloodLink Rescue Rush**, in the same spirit as the dinosaur game in Chrome. Press Space (or tap) to start, move the basket with the arrow keys or by dragging, catch red drops for +10 and avoid green germs, which cost a life. It has no timer and ends when all three lives are lost. The Blood Group Match game was removed. The score and sound setting stay in the visitor's browser and are never uploaded.
 
-The games can work when the visitor is offline **after the website has been opened online at least once and the service worker has successfully installed**. A first-time visitor with no network cannot download a website they have never cached.
+The game can work when the visitor is offline **after the website has been opened online at least once and the service worker has successfully installed**. A first-time visitor with no network cannot download a website they have never cached.
 
 ## 18. Offline fallback and automatic website updates
 

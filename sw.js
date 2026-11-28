@@ -1,6 +1,6 @@
 /* BloodLink Blog offline fallback + freshness policy.
    Network-first for pages and assets so published design updates are used as soon as reachable. */
-const CACHE_NAME = 'bloodlink-blog-shell-v20261128-1';
+const CACHE_NAME = 'bloodlink-blog-shell-v20261128-2';
 const SHELL = [
   './',
   './index.html',

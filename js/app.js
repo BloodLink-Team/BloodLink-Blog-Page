@@ -7,7 +7,7 @@
       language:"Language: English / বাংলা",report:"Report a problem",share:"Share this website",
       menuNote:"Made to help people make informed choices",tagline:"Donate blood, save lives",
       
-      heading:"Give blood with confidence",intro:"Explore clear, reliable information about blood donation, from preparing for your first visit to how blood groups work",
+      heading:"Awareness begins here",intro:"Explore practical guides, topics, and reliable information about blood donation",
       articles:"articles",searchPlaceholder:"Search articles",browse:"Browse by topic",
       freshReads:"Fresh reads",latest:"Latest articles",updated:"",
       noResults:"No articles found",noResultsText:"Try another keyword or choose a different topic",reset:"Reset search",
@@ -24,7 +24,7 @@
       language:"ভাষা: English / বাংলা",report:"সমস্যা জানান",share:"ওয়েবসাইট শেয়ার করুন",
       menuNote:"সচেতন সিদ্ধান্ত নিতে সাহায্য করার জন্য তৈরি",tagline:"রক্ত দিন, জীবন বাঁচান",
       
-      heading:"আত্মবিশ্বাসের সঙ্গে রক্ত দিন",intro:"রক্তদান সম্পর্কে স্পষ্ট ও নির্ভরযোগ্য তথ্য জানুন, প্রথমবারের প্রস্তুতি থেকে রক্তের গ্রুপ পর্যন্ত",
+      heading:"সচেতনতার শুরু এখানেই",intro:"রক্তদান সম্পর্কে ব্যবহারিক নির্দেশিকা, বিষয় এবং নির্ভরযোগ্য তথ্য পড়ুন",
       articles:"টি প্রবন্ধ",searchPlaceholder:"প্রবন্ধ খুঁজুন",browse:"বিষয় অনুযায়ী দেখুন",
       freshReads:"নতুন লেখা",latest:"সর্বশেষ প্রবন্ধ",updated:"",
       noResults:"কোনো প্রবন্ধ পাওয়া যায়নি",noResultsText:"অন্য শব্দ লিখুন বা ভিন্ন বিষয় বেছে নিন",reset:"সার্চ রিসেট করুন",
@@ -295,7 +295,7 @@
     initMenu();
     initReadingProgress();
     if (document.getElementById("blogGrid")) {
-      setSEO("BloodLink Blog | Donate blood, save lives", "Explore clear, reliable information about blood donation: donor guides, blood group basics and ways to support people who need blood.", absoluteURL(config.ogImage), absoluteURL("index.html"));
+      setSEO("BloodLink Blog | Donate blood, save lives", "Explore practical guides, topics, and reliable information about blood donation.", absoluteURL(config.ogImage), absoluteURL("index.html"));
     }
     applyLanguage();
   });
